@@ -23,7 +23,7 @@ module.exports = class UpdateCommand extends Command
     async run(ctx)
     {
         const stdout = this.cp.execSync('git pull').toString();
-        ctx.send(stripIndents`
+        await ctx.send(stripIndents`
             :white_check_mark: **| Now restarting bot! Providing the output**:
             \`\`\`prolog
             ${stdout}
