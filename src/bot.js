@@ -3,6 +3,7 @@ require('dotenv').config({ path: '../.env' });
 
 const YamashiroClient = require('./core/client');
 const Constants = require('./util/constants');
+const server = require('./server');
 const w = require('wumpfetch');
 
 const client = new YamashiroClient();
@@ -14,6 +15,7 @@ w.setDefaults({
 });
 
 client.build();
+server(client);
 
 process.on('unhandledRejection', (reason) => {
     const { stripIndents } = require('common-tags');
