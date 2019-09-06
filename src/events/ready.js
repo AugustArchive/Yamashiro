@@ -14,13 +14,12 @@ module.exports = class ReadyEvent extends Event
     async emit()
     {
         this.client.logger.info(`Yamashiro has connected to Discord with ${this.client.guilds.size} Guild${this.client.guilds.size > 1? 's': ''} and ${this.client.users.size} Users`);
-        for (const shard of this.client.shards.map(s => s)) this.client.editStatus('online', {
-            name: `${process.env.YAMASHIRO_PREFIX}help | [${shard.id}] | ${this.client.guilds.size.toLocaleString()} Guilds`,
+        this.client.editStatus('online', {
+            name: `${process.env.YAMASHIRO_PREFIX}help | ${this.client.guilds.size.toLocaleString()} Guilds`,
             type: 0
         });
         this.client.startRedditFeeds();
         await this.post();
-
         setTimeout(async() => await this.post(), 900000);
     }
 

@@ -145,7 +145,8 @@ module.exports = class EmbedBuilder
             footer: this.footer? this.footer: undefined,
             color: this.color,
             url: this.url? this.url: undefined,
-            timestamp: this.timestamp? this.timestamp.toISOString(): undefined
+            timestamp: this.timestamp? this.timestamp.toISOString(): undefined,
+            thumbnail: this.thumbnail? this.thumbnail: undefined
         };
     }
 }

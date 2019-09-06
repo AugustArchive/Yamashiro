@@ -24,7 +24,7 @@ module.exports = class EvalCommand extends Command
     {
         if (ctx.args.isEmpty(0)) {
             const m = await ctx.send("Commander, I am now reloading all commands...");
-            const cat = await this.fs.readdirSync(__dirname);
+            const cat = await this.fs.readdirSync(`${process.cwd()}/commands`);
             for (let i = 0; i < cat.length; i++)
             {
                 const category = cat[i];

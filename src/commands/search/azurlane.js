@@ -9,10 +9,11 @@ module.exports = class AzurLaneCommand extends Command
     {
         super(client, {
             command: 'azurlane',
-            description: 'Searchs information about an Azur Lane character ~~thats lewd~~',
+            description: 'Searches information about an Azur Lane character ~~thats lewd~~',
             usage: '<query>',
             category: 'Search',
-            aliases: ['shipgirl']
+            aliases: ['shipgirl'],
+            disabled: true
         });
 
         this.azurlane = new AzurLaneClient();

@@ -9,7 +9,8 @@ module.exports = class QtRadioCommand extends Command
             command: 'qtradio',
             description: 'Shows the current song playing on qtradio.moe',
             aliases: ['qt-np'],
-            category: 'Search'
+            category: 'Search',
+            disabled: true
         });
     }
     

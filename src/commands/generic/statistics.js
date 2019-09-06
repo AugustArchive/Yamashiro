@@ -44,7 +44,7 @@ module.exports = class StatisticsCommand extends Command
                 .addField('CPUs', stats.cpu, true)
                 .addField('Messages Seen', this.client.messagesSeen.toLocaleString(), true)
                 .addField('Commands Executed', this.client.commandsExecution.toLocaleString(), true)
-                .addField('Most Used Command', mostUsed, true)
+                .addField('Most Used Command', `${process.env.YAMASHIRO_PREFIX}${mostUsed} (${this.client.commandUsage[mostUsed]} executions)`, true)
                 .build()
         );
     }

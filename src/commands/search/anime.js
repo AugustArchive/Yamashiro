@@ -11,7 +11,8 @@ module.exports = class AnimeCommand extends Command
             description: 'Searchs any anime from anilist.co',
             usage: '<query>',
             aliases: ['animu'],
-            category: 'Search'
+            category: 'Search',
+            disabled: true
         });
 
         this.anilist = new AniList();
