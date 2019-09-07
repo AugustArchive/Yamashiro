@@ -1,6 +1,5 @@
 const Event = require('../core/event');
 const w     = require('wumpfetch');
-const fs    = require('fs');
 
 module.exports = class ReadyEvent extends Event
 {
@@ -21,9 +20,6 @@ module.exports = class ReadyEvent extends Event
         });
         this.client.startRedditFeeds();
         await this.post();
-        const commands = [...this.client.manager.commands.values()];
-        fs
-            .writeFileSync(`${process.cwd()}${require('path').sep}assets${require('path').sep}commands.js`, `module.exports = ${commands};`);
 
         setTimeout(async() => await this.post(), 900000);
     }

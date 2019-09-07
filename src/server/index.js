@@ -1,5 +1,4 @@
 const express = require('express');
-const commands = require('../assets/commands');
 
 /**
  * Builds the webserver
@@ -9,7 +8,6 @@ module.exports = (client) => {
     const app = express();
     app
         .get('/', (_, res) => res.status(200).json({ success: true, message: 'get out' }))
-        .get('/commands', (_, res) => res.status(200).json({ success: true, data: [commands] }))
         .get('/guilds', async(_, res) => {
             const guilds = await client.database.models.guilds.find({}).exec();
             if (guilds.length < 1) res.status(500).json({ success: false, message: 'rip mongodb' });

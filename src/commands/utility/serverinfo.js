@@ -1,4 +1,3 @@
-const { stripIndents } = require('common-tags');
 const Command = require('../../core/command');
 
 module.exports = class ServerInfoCommand extends Command
@@ -65,6 +64,7 @@ module.exports = class ServerInfoCommand extends Command
     async run(ctx)
     {
         const guild = await this.client.rest.getGuild(ctx.args.getRaw().length >= 1? ctx.args.gather(' '): ctx.guild.id);
+        const owner = this.client.users.get(guild.ownerID);
         const user = await this.client.database.getUser(ctx.sender.id);
 
         return ctx.embed(
@@ -72,15 +72,14 @@ module.exports = class ServerInfoCommand extends Command
                 .client
                 .getEmbed()
                 .setTitle(`[ Guild ${guild.name} ]`)
-                .setDescription(stripIndents`
-                    **ID**: ${guild.id}
-                    **Created At**: ${this.client.util.parseDate(guild.createdAt, user.region)}
-                    **Region**: ${this.mutable.regions[guild.region]} **${this.parseRegionName(guild.region)}**
-                    **Owner**: <@${guild.ownerID}> (\`${guild.ownerID}\`)
-                    **Members**: ${guild.memberCount.toLocaleString()}
-                    **Roles [${guild.roles.size}]**: ${guild.roles.map(s => `<@&${s.id}>`).join(', ')}
-                    **Verification Level**: ${this.mutable.verifications[guild.verificationLevel]}
-                `)
+                .setDescription(`:birthday: **${this.client.util.parseDate(guild.createdAt, user.region)}**`)
+                .setThumbnail(guild.icon? guild.iconURL: null)
+                .setFooter(`ID: ${guild.id}`, guild.icon? guild.iconURL: null)
+                .addField(`${this.mutable.regions[guild.region]} Region`, this.parseRegionName(guild.region), true)
+                .addField('Owner', `**${owner.username}#${owner.discriminator}** (\`${guild.ownerID}\`)`)
+                .addField(`Members [${guild.memberCount.toLocaleString()}]`, `<:online:457289010037915660> **${guild.members.filter(s => s.status === 'online').length} Online** | <:offline:457289010084184066> **${ctx.guild.members.filter(s => s.status === 'offline').length} Offline**`, true)
+                .addField('Verification Level', this.mutable.verifications[guild.verificationLevel], true)
+                .addField(`Channels [${guild.channels.size}]`, `**Text: ${guild.channels.filter(s => s.type === 0).length}** | **Voice: ${guild.channels.filter(s => s.type === 3).length}**`)
                 .build()
         );
     }

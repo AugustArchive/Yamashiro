@@ -1,5 +1,4 @@
 const EmbedBuilder = require('../../util/embed-builder');
-const { stripIndents } = require('common-tags');
 const Command = require('../../core/command');
 
 module.exports = class RoleInfoCommand extends Command
@@ -23,22 +22,20 @@ module.exports = class RoleInfoCommand extends Command
     {
         const member = ctx.guild.members.get(ctx.sender.id);
         const raw = ctx.args.getRaw();
-        const role = await this.client.rest.getRole(raw.length >= 1? raw.join(' '): member.roles[0], ctx.guild);
+        const id = ctx.args.isEmpty(0)? member.roles[Math.floor(Math.random() * member.roles.length)]: raw.join(' ');
+        const role = await this.client.rest.getRole(id, ctx.guild);
         const user = await this.client.database.getUser(ctx.sender.id);
 
         return ctx.embed(
             new EmbedBuilder()
                 .setTitle(`[ Role ${role.name} ]`)
-                .setDescription(stripIndents`
-                    **ID**: ${role.id}
-                    **Created At**: ${this.client.util.parseDate(role.createdAt, user.region)}
-                    **Position**: ${role.position - 1}
-                    **Mentionable**: ${role.mentionable? 'Yes': 'No'}
-                    **Hoisted**: ${role.hoist? 'Yes': 'No'}
-                    **Managed**: ${role.managed? 'Yes': 'No'}
-                    **Color**: #${parseInt(role.color).toString(16)}
-                `)
-                .setColor(role.color === 0? role.color: this.client.constants.COLOR)
+                .setDescription(`:birthday: **${this.client.util.parseDate(role.createdAt, user.region)}**`)
+                .setFooter(`ID: ${role.id}`)
+                .addField('Position', (role.position - 1), true)
+                .addField('Mentionable', role.mentionable? 'Yes': 'No', true)
+                .addField('Managed', role.managed? 'Yes': 'No', true)
+                .addField('Color', `#${parseInt(role.color).toString(16)}`, true)
+                .setColor(role.color === 0? this.client.constants.COLOR: role.color)
                 .build()
         );
     }
