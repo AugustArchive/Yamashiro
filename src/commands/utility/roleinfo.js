@@ -31,7 +31,7 @@ module.exports = class RoleInfoCommand extends Command
                 .setTitle(`[ Role ${role.name} ]`)
                 .setDescription(`:birthday: **${this.client.util.parseDate(role.createdAt, user.region)}**`)
                 .setFooter(`ID: ${role.id}`)
-                .addField('Position', (role.position - 1), true)
+                .addField('Position', `#${(role.position - 1)}`, true)
                 .addField('Mentionable', role.mentionable? 'Yes': 'No', true)
                 .addField('Managed', role.managed? 'Yes': 'No', true)
                 .addField('Color', `#${parseInt(role.color).toString(16)}`, true)
