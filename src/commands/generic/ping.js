@@ -19,25 +19,8 @@ module.exports = class PingCommand extends Command
     async run(ctx)
     {
         const started = Date.now();
-        const m = await ctx.send('Admiral, why do you want latencies?');
-
-        const pings = {
-            messageCreation: Date.now() - started,
-            messageDeletion: (Date.now() - m.createdAt).toFixed(),
-            shard: ctx.guild.shard.latency
-        };
-
-        await m.delete();
-        return ctx.embed(
-            this
-                .client
-                .getEmbed()
-                .setDescription(stripIndents`
-                    **Message Creation**: ${pings.messageCreation}ms
-                    **Message Deletion**: ${pings.messageDeletion}ms
-                    **Shard #${ctx.guild.shard.id}**: ${pings.shard}ms
-                `)
-                .build()
-        );
+        const msg = await ctx.send(':ping_pong: **| Admiral, why do you want latencies?...**');
+        await msg.delete();
+        return ctx.send(`:ping_pong: **| REST: \`${Date.now() - started}ms\` | Gateway: \`${ctx.guild.shard.latency}ms\`**`);
     }
 };

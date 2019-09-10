@@ -38,7 +38,6 @@ module.exports = class StatisticsCommand extends Command
                 .addField('Shards [Current/Total]', `${ctx.guild.shard.id}/${stats.shards}`, true)
                 .addField('Uptime', stats.uptime, true)
                 .addField('Memory Usage', stats.memoryUsage, true)
-                .addField('Versions', `Yamashiro: v${stats.versions.yamashiro} **|** Eris: v${stats.versions.eris} **|** Node: ${stats.versions.node}`)
                 .addField('OS', `${stats.platform.platform} (${stats.platform.arch})`, true)
                 .addField('OS Release', stats.platform.release, true)
                 .addField('CPUs', stats.cpu, true)

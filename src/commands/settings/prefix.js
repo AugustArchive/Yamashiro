@@ -1,5 +1,5 @@
 const { stripIndents } = require('common-tags');
-const Command = require('../../core/commands/settings');
+const Command = require('../../core/command');
 
 module.exports = class PrefixCommand extends Command
 {
@@ -9,7 +9,10 @@ module.exports = class PrefixCommand extends Command
             command: 'prefix',
             description: 'Views or sets the prefix',
             usage: '<prefix>',
-            aliases: ['setprefix']
+            aliases: ['setprefix'],
+            guildOnly: true,
+            category: 'Settings',
+            userPermissions: ['manageGuild']
         });
     }
 

@@ -1,4 +1,4 @@
-const Command = require('../../core/commands/settings');
+const Command = require('../../core/command');
 const w = require('wumpfetch');
 
 module.exports = class RedditCommand extends Command
@@ -10,7 +10,9 @@ module.exports = class RedditCommand extends Command
             description: 'Sets the reddit feed configuration',
             usage: '<"enabled" | "channelID" | "subreddit"> <value>',
             aliases: ['setreddit'],
-            type: 'guild'
+            guildOnly: true,
+            category: 'Settings',
+            userPermissions: ['manageGuild']
         });
 
         this.mutable = {

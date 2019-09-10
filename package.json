@@ -1,7 +1,7 @@
 {
     "name": "yamashiro",
     "description": "Robust, multifunctional Discord bot made in the Eris library",
-    "version": "0.2.8",
+    "version": "0.2.10",
     "main": "src/bot.js",
     "author": "August <augu@voided.pw>",
     "dependencies": {

@@ -1,4 +1,4 @@
-const Command = require('../../core/commands/settings');
+const Command = require('../../core/command');
 
 module.exports = class PrefixCommand extends Command
 {
@@ -9,7 +9,8 @@ module.exports = class PrefixCommand extends Command
             description: 'Sets the region',
             usage: '<"na" | "eu" | "oceania" | "asia">',
             aliases: ['region'],
-            type: 'user'
+            guildOnly: true,
+            category: 'Settings'
         });
 
         this.mutable = {
@@ -37,7 +38,8 @@ module.exports = class PrefixCommand extends Command
         this
             .client
             .database
-            .models['users']
+            .models
+            .users
             .updateOne({ userID: ctx.sender.id }, { $set: { region: x } }, (error) => {
                 if (error) return ctx.send(`Admiral, I was unable to set your region to \`${x}\`. Sorry...`);
                 return ctx.send(`Admiral, your region has been set to \`${x}\`! ${x === 'USA'? 'All date formats are `mm/dd/yyyy`': 'All date formats are `dd/mm/yyyy`'}!`);
