@@ -32,7 +32,7 @@ module.exports = class PrefixCommand extends Command
     {
         const region = ctx.args.get(0);
         if (!region) return ctx.send('Admiral, you didn\'t provide a region! (' + this.mutable.regions.map(s => `\`${s}\``).join(', ') + ')');
-        if (!this.mutable.regions.includes(region)) return ctx.send(`Admiral, you didn't provide a valid region. (${this.mutable.regions.map(s => `\`${s}\``).join(', ')}\`)`);
+        if (!this.mutable.regions.includes(region)) return ctx.send(`Admiral, you didn't provide a valid region. (${this.mutable.regions.map(s => `\`${s}\``).join(', ')})`);
         
         const x = this.mutable.regionObj[region];
         this

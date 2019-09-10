@@ -18,16 +18,6 @@ module.exports = class UptimeCommand extends Command
      */
     async run(ctx)
     {
-        const os = require('os');
-
-        return ctx.embed(
-            this
-                .client
-                .getEmbed()
-                .setTitle('Current Uptime')
-                .addField('Bot', this.client.getUptime(), true)
-                .addField('Operating System', humanize(os.uptime() / 1000), true)
-                .build()
-        );
+        return ctx.send(`:information_source: **| ${humanize(Date.now() - this.client.startTime)}**`);
     }
 };
