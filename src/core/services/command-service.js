@@ -45,7 +45,7 @@ module.exports = class CommandService
             const member = context.guild.members.get(msg.author.id);
             if (cmd.guildOnly && msg.channel.type === 1) return context.send(`Unable to run the \`${cmd.command}\` command because you're not in a guild.`);
             if (cmd.ownerOnly && !this.client.admins.includes(msg.author.id)) return context.send(`Unable to run the \`${cmd.command}\` command because you're not my owner!!`);
-            if (cmd.userPermissions && cmd.userPermissions.some(p => !member.permission.has(p)) || !this.client.admins.includes(msg.author.id)) {
+            if (cmd.userPermissions && cmd.userPermissions.some(p => member.permission.has(p)) || this.client.admins.includes(msg.author.id)) {
                 const needed = cmd.userPermissions.filter(perm => !member.permission.has(perm));
                 return context.send(`:name_badge: **| Missing the following ${needed.length > 1? `permission: ${needed[0]}`: `permissions: ${needed.join(', ')}`}**`);
             }
