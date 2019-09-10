@@ -69,12 +69,6 @@ module.exports = class YamashiroCommand
          * @type {string}
          */
         this.parent = null;
-
-        /**
-         * The user permissions
-         * @type {string[]}
-         */
-        this.userPermissions = info.userPermissions || [];
     }
 
     /**
@@ -137,8 +131,7 @@ module.exports = class YamashiroCommand
             .addField('Category', this.category, true)
             .addField('Aliases', this.aliases.length > 0? `\`${this.aliases.join('`, `')}\``: 'None', true)
             .addField('Guild Only', this.guildOnly? 'True': 'False', true)
-            .addField('Owner Only', this.ownerOnly? 'True': 'False', true)
-            .addField('User Permissions', this.userPermissions.length > 0? this.userPermissions.join(', '): 'None', true);
+            .addField('Owner Only', this.ownerOnly? 'True': 'False', true);
             
         return embed.build();
     }
@@ -157,5 +150,4 @@ module.exports = class YamashiroCommand
  * @prop {boolean} [disabled=false] If the command shouldn't be added to the collection
  * @prop {number} [throttle=3] The command throttle
  * @prop {string[]} [flags=[]] The command flags
- * @prop {string[]} [userPermissions=[]] User permissions
  */
