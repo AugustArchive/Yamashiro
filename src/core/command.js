@@ -88,7 +88,7 @@ module.exports = class YamashiroCommand
      */
     async run(context)
     {
-        return context.send(`The command \`${this.command}\` is disabled due to no functionality.`);
+        throw new TypeError(`Fuck JavaScript (Command ${this.name} has no functionality)`);
     }
 
     /**
