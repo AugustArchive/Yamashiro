@@ -11,8 +11,7 @@ module.exports = class PrefixCommand extends Command
             usage: '<prefix>',
             aliases: ['setprefix'],
             guildOnly: true,
-            category: 'Settings',
-            userPermissions: ['manageGuild']
+            category: 'Settings'
         });
     }
 
@@ -22,6 +21,8 @@ module.exports = class PrefixCommand extends Command
      */
     async execute(ctx)
     {
+        if (!this.client.admins.includes(ctx.sender.id) || !ctx.member.permission.has('manageGuild')) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
+
         const prefix = ctx.args.get(0);
         const settings = await this.client.database.getGuild(ctx.guild.id);
         if (!prefix) return ctx.send(`Admiral, the current prefix is \`${settings['prefix']}\`.`);

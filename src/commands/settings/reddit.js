@@ -11,8 +11,7 @@ module.exports = class RedditCommand extends Command
             usage: '<"enabled" | "channelID" | "subreddit"> <value>',
             aliases: ['setreddit'],
             guildOnly: true,
-            category: 'Settings',
-            userPermissions: ['manageGuild']
+            category: 'Settings'
         });
 
         this.mutable = {
@@ -30,6 +29,9 @@ module.exports = class RedditCommand extends Command
      */
     async run(ctx)
     {
+
+        if (!this.client.admins.includes(ctx.sender.id) || !ctx.member.permission.has('manageGuild')) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
+
         const subcommand = ctx.args.get(0);
         switch (subcommand)
         {

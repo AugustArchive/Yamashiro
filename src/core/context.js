@@ -37,6 +37,14 @@ module.exports = class CommandContext
     }
 
     /**
+     * Gets the current user's member facility
+     */
+    get member()
+    {
+        return this.guild.members.get(this.sender.id);
+    }
+
+    /**
      * Sends a message to a channel
      * @param {string} content The content to send
      */
