@@ -21,7 +21,7 @@ module.exports = class PrefixCommand extends Command
      */
     async run(ctx)
     {
-        if (!this.client.admins.includes(ctx.sender.id) || !ctx.member.permission.has('manageGuild')) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
+        if (!ctx.member.permission.has('manageGuild') || !this.client.admins.includes(ctx.sender.id)) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
 
         const prefix = ctx.args.get(0);
         const settings = await this.client.database.getGuild(ctx.guild.id);
