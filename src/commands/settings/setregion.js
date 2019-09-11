@@ -28,7 +28,7 @@ module.exports = class PrefixCommand extends Command
      * Runs the `setregion` command
      * @param {import('../../core/context')} ctx The command context
      */
-    async execute(ctx)
+    async run(ctx)
     {
         const region = ctx.args.get(0);
         if (!region) return ctx.send('Admiral, you didn\'t provide a region! (' + this.mutable.regions.map(s => `\`${s}\``).join(', ') + ')');

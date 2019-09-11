@@ -25,11 +25,10 @@ module.exports = class RedditCommand extends Command
 
     /**
      * Runs the `reddit` command
-     * @param {import('../../../core/context')} ctx The command context
+     * @param {import('../../core/context')} ctx The command context
      */
     async run(ctx)
     {
-
         if (!this.client.admins.includes(ctx.sender.id) || !ctx.member.permission.has('manageGuild')) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
 
         const subcommand = ctx.args.get(0);

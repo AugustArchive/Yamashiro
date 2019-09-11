@@ -88,7 +88,7 @@ module.exports = class YamashiroCommand
      */
     async run(context)
     {
-        throw new TypeError(`Fuck JavaScript (Command ${this.name} has no functionality)`);
+        throw new TypeError(`Fuck JavaScript (Command ${this.command} has no functionality)`);
     }
 
     /**

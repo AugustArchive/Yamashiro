@@ -19,7 +19,7 @@ module.exports = class PrefixCommand extends Command
      * Runs the `prefix` command
      * @param {import('../../core/context')} ctx The command context
      */
-    async execute(ctx)
+    async run(ctx)
     {
         if (!this.client.admins.includes(ctx.sender.id) || !ctx.member.permission.has('manageGuild')) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
 
