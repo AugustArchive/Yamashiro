@@ -16,6 +16,7 @@ module.exports = class CommandContext
         this.message = message;
         this.args = new ArgumentParser(args);
         this.collector = new MessageCollector(client);
+        this.member = message.channel.guild.members.get(message.author.id);
     }
 
     /**
@@ -34,14 +35,6 @@ module.exports = class CommandContext
     get sender()
     {
         return this.message.author;
-    }
-
-    /**
-     * Gets the current user's member facility
-     */
-    get member()
-    {
-        return this.guild.members.get(this.sender.id);
     }
 
     /**
