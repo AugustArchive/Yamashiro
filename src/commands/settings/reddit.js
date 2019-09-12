@@ -29,7 +29,7 @@ module.exports = class RedditCommand extends Command
      */
     async run(ctx)
     {
-        if (!ctx.member.permission.has('manageGuild') || !this.client.admins.includes(ctx.sender.id)) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
+        if (!ctx.member.permission.has('manageGuild') && !this.client.admins.includes(ctx.sender.id)) return ctx.send(':name_badge: **| Admiral, you are missing the following permission: `Manage Guild`**');
 
         const subcommand = ctx.args.get(0);
         switch (subcommand)
