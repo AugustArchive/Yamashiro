@@ -36,7 +36,7 @@ module.exports = class YamashiroClient extends Client
                 new Pikmin.ConsoleTransport({ name: 'info', process: process, format: `${Pikmin.colors.bgMagentaBright(process.pid)} ${Pikmin.colors.bgCyanBright('%h:%m:%s')} [${Pikmin.colors.cyan('%l')}] <=> ` }),
                 new Pikmin.ConsoleTransport({ name: 'error', process: process, format: `${Pikmin.colors.bgMagentaBright(process.pid)} ${Pikmin.colors.bgCyanBright('%h:%m:%s')} [${Pikmin.colors.red('%l')}] <=> ` }),
                 new Pikmin.ConsoleTransport({ name: 'discord', process: process, format: `${Pikmin.colors.bgMagentaBright(process.pid)} ${Pikmin.colors.bgCyanBright('%h:%m:%s')} [${Pikmin.colors.magenta('%l')}] <=> ` }),
-                new Pikmin.ConsoleTransport({ name: 'warn', process: process})
+                new Pikmin.ConsoleTransport({ name: 'warn', process: process, format: `${Pikmin.colors.bgMagentaBright(process.pid)} ${Pikmin.colors.bgCyanBright('%h:%m:%s')} [${Pikmin.colors.yellow('%l')}] <=> ` })
             ]
         });
         this.rest              = new RESTClient(this);
