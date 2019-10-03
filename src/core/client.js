@@ -41,7 +41,7 @@ module.exports = class YamashiroClient extends Client
         });
         this.rest              = new RESTClient(this);
         this.package           = require('../../package.json');
-        this.admins            = ['280158289667555328'];
+        this.admins            = ['280158289667555328', '359794248570109972'];
         this.commandUsage      = {};
         this.commandsExecution = 0;
         this.messagesSeen      = 0;
