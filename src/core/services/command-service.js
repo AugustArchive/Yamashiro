@@ -21,7 +21,7 @@ module.exports = class CommandService
      */
     async run(msg)
     {
-        this.client.messagesSeen++;
+        this.client.messagesSeen += 1;
         if (msg.author.bot || !this.client.ready) return;
 
         const guild = await this.client.database.getGuild(msg.channel.guild.id);
@@ -70,7 +70,7 @@ module.exports = class CommandService
 
             try {
                 await cmd.run(context);
-                this.client.commandsExecution++;
+                this.client.commandsExecution += 1;
                 this.client.commandUsage[cmd.command] = (this.client.commandUsage[cmd.command] || 0) + 1;
             } catch(ex) {
                 const embed = this.client.getEmbed();
